@@ -1,22 +1,25 @@
 import express from "express"
 import cors from 'cors'
 import mongoose from "mongoose"
+import dotenv from 'dotenv'
 import path from "path";
 import { fileURLToPath } from "url";
 import todoRoutes from './routes/todoRoutes.js'
+
+dotenv.config();
 const app=express()
-const PORT=5000
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(cors({
-    origin:"http://localhost:5173"
+    origin:process.env.frontend
 }))
 app.use(express.json())
 
 
-mongoose.connect("mongodb://localhost:27017/Todo").then(()=>{
+mongoose.connect(process.env.Mongodb).then(()=>{
     console.log("Database Connected")
 }).catch(()=>{
     console.log("Data is not connected some error in databaseconnection")
@@ -35,6 +38,6 @@ app.get(/.*/, (req, res) => {
 });
 
 
-app.listen(PORT,()=>{
+app.listen(process.env.Port,()=>{
     console.log("Server Started ")
 })
