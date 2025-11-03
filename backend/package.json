@@ -1,6 +1,15 @@
 
+
+
+
+
 {
   "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build": "cd ../frontend && npm install && npm run build"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
